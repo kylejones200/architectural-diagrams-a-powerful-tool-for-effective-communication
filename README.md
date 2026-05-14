@@ -1,7 +1,7 @@
 # Architectural Diagrams A Powerful Tool for Effective Communication
 
-**Published:** 2024-04-01
-**Medium:** [https://medium.com/@kyle-t-jones/architectural-diagrams-a-powerful-tool-for-effective-communication-15601bb631da](https://medium.com/@kyle-t-jones/architectural-diagrams-a-powerful-tool-for-effective-communication-15601bb631da)
+Published: 2024-04-01
+Medium: [https://medium.com/@kyle-t-jones/architectural-diagrams-a-powerful-tool-for-effective-communication-15601bb631da](https://medium.com/@kyle-t-jones/architectural-diagrams-a-powerful-tool-for-effective-communication-15601bb631da)
 
 ## About
 
