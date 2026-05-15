@@ -1,0 +1,5 @@
+[project]
+name = "architectural-diagrams-a-powerful-tool-for-effecti"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = []
