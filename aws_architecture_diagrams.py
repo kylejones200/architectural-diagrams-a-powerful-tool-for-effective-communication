@@ -1,66 +1,76 @@
 from diagrams import Cluster, Diagram
-from diagrams import Diagram
-from diagrams.aws.compute import EC2
-from diagrams.aws.compute import ECS, EKS, Lambda
-from diagrams.aws.database import RDS
-from diagrams.aws.database import Redshift
+from diagrams.aws.compute import EC2, ECS, EKS, Lambda
+from diagrams.aws.database import RDS, Redshift
 from diagrams.aws.integration import SQS
-from diagrams.aws.network import ELB
-from diagrams.aws.network import VPC
+from diagrams.aws.network import ELB, VPC
 from diagrams.aws.storage import S3
 
 
 def notebook_step_001() -> None:
-    'Generated from Jupyter notebook: aws_architecture_diagrams\n\nMagics and shell lines are commented out. Run with a normal Python interpreter.'
+    "Generated from Jupyter notebook: aws_architecture_diagrams\n\nMagics and shell lines are commented out. Run with a normal Python interpreter."
 
 
 def notebook_step_003() -> None:
-    with Diagram('Grouped Workers', show=True, direction='TB'):
-        ELB('lb') >> [EC2('worker1'), EC2('worker2'), EC2('worker3'), EC2('worker4'), EC2('worker5')] >> RDS('events')
+    with Diagram("Grouped Workers", show=True, direction="TB"):
+        (
+            ELB("lb")
+            >> [
+                EC2("worker1"),
+                EC2("worker2"),
+                EC2("worker3"),
+                EC2("worker4"),
+                EC2("worker5"),
+            ]
+            >> RDS("events")
+        )
 
 
 def diagram_py() -> None:
-    with Diagram('Web Service', show=True):
-        ELB('lb') >> EC2('web') >> RDS('userdb')
+    with Diagram("Web Service", show=True):
+        ELB("lb") >> EC2("web") >> RDS("userdb")
 
 
 def notebook_step_006() -> None:
-    with Diagram('Event Processing', show=True):
-        source = EKS('k8s source')
-        with Cluster('Event Flows'):
-            with Cluster('Event Workers'):
-                workers = [ECS('worker1'), ECS('worker2'), ECS('worker3')]
-            queue = SQS('event queue')
-            with Cluster('Processing'):
-                handlers = [Lambda('proc1'), Lambda('proc2'), Lambda('proc3')]
-        store = S3('events store')
-        dw = Redshift('analytics')
-        VPC = VPC('VPC')
+    with Diagram("Event Processing", show=True):
+        source = EKS("k8s source")
+        with Cluster("Event Flows"):
+            with Cluster("Event Workers"):
+                workers = [ECS("worker1"), ECS("worker2"), ECS("worker3")]
+            queue = SQS("event queue")
+            with Cluster("Processing"):
+                handlers = [Lambda("proc1"), Lambda("proc2"), Lambda("proc3")]
+        store = S3("events store")
+        dw = Redshift("analytics")
+        vpc = VPC("VPC")
         source >> workers >> queue >> handlers
         handlers >> store
-        handlers >> dw >> VPC
+        handlers >> dw >> vpc
 
 
 def notebook_step_007() -> None:
-    with Diagram('Event Processing', show=True):
-        source = EKS('k8s source')
-        with Cluster('Event Flows'):
-            with Cluster('VPC'):
-                workers = [ECS('worker1'), ECS('worker2'), ECS('worker3')]
-            queue = SQS('event queue')
-            with Cluster('Processing'):
-                handlers = [Lambda('proc1'), Lambda('proc2'), Lambda('proc3')]
-        store = S3('events store')
-        dw = Redshift('analytics')
+    with Diagram("Event Processing", show=True):
+        source = EKS("k8s source")
+        with Cluster("Event Flows"):
+            with Cluster("VPC"):
+                workers = [ECS("worker1"), ECS("worker2"), ECS("worker3")]
+            queue = SQS("event queue")
+            with Cluster("Processing"):
+                handlers = [Lambda("proc1"), Lambda("proc2"), Lambda("proc3")]
+        store = S3("events store")
+        dw = Redshift("analytics")
         source >> workers >> queue >> handlers
         handlers >> store
         handlers >> dw
 
 
 def notebook_step_008() -> None:
-    with Diagram('Grouped Workers', show=True):
-        ELB('lb') >> [EC2('worker1')] >> RDS('events') >> RDS('events')
-        ELB('lb') >> [EC2('worker2'), EC2('worker3'), EC2('worker4'), EC2('worker5')] >> RDS('events')
+    with Diagram("Grouped Workers", show=True):
+        ELB("lb") >> [EC2("worker1")] >> RDS("events") >> RDS("events")
+        (
+            ELB("lb")
+            >> [EC2("worker2"), EC2("worker3"), EC2("worker4"), EC2("worker5")]
+            >> RDS("events")
+        )
 
 
 def download_an_image_to_be_used_into_a_custom_node() -> None:
@@ -73,7 +83,6 @@ def download_an_image_to_be_used_into_a_custom_node() -> None:
     primavera = "primavera.png"
     e2open_logo = "e2open.png"
     iris_logo = "IRIS.png"
-
     with Diagram("Work Order Process", show=True):
         sap_process = Custom("SAP", sap_logo)
         e2open = Custom("E2Open", e2open_logo)
@@ -95,15 +104,12 @@ def download_an_image_to_be_used_into_a_custom_node_2() -> None:
     iris_logo = "IRIS.png"
     sagemaker_logo = "Amazon-SageMaker_light-bg@4x.png"
     quicksight_logo = "Amazon-Quicksight@4x.png"
-
     with Diagram("Work Order Process", show=True):
         with Cluster("AWS"):
             Custom("SAP C-FIN \n (HANA S/4)", sap_logo) >> Custom(
                 "SageMaker", sagemaker_logo
             )
-            Custom("SageMaker", sagemaker_logo) >> Custom(
-                "Quicksight", quicksight_logo
-            )
+            Custom("SageMaker", sagemaker_logo) >> Custom("Quicksight", quicksight_logo)
         operator = Custom("Operator identifies an issue", user)
         sap_process = Custom("SAP", sap_logo)
         schedule = Custom("Primavera P6", primavera)
@@ -139,6 +145,7 @@ def main() -> None:
     download_an_image_to_be_used_into_a_custom_node()
     download_an_image_to_be_used_into_a_custom_node_2()
     event_processing_with_vpc_cluster()
+
 
 if __name__ == "__main__":
     main()
