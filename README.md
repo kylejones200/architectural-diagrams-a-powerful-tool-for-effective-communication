@@ -11,14 +11,7 @@ Understanding how to leverage diagrams and create them is an essential skill for
 
 Architectural diagrams use lines, arrows, and labeled components to illustrate the flow of data, processes, and interactions within a system. The goal is to create a clear, easy-to-understand visual that facilitates seamless communication.
 
-## About
 
-Place the code for this article in this repository.
-The original article export is saved as `article.md`.
-
-## Files
-
-Add your `.ipynb`, `.py`, `.yaml`, `.js`, `.ts`, or other project files here.
 
 ## Disclaimer
 
